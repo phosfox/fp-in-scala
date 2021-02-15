@@ -1,8 +1,10 @@
 package chapter.two
 
+import scala.annotation.tailrec
+
 object Exercise {
     def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
-        a => (b => f(a, b))
+        a => b => f(a, b)
     }
     def uncurry[A,B,C](f: A => B => C): (A, B) => C = {
         (a, b) => f(a)(b)
@@ -13,6 +15,7 @@ object Exercise {
     }
         
     def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
+        @tailrec
         def loop(n: Int): Boolean = {
             if (n >= as.length - 1) true
             else if (ordered(as(n), as(n+1))) loop(n+1)
@@ -37,7 +40,7 @@ object Exercise {
         go(n, 0, 1)
     }
 
-    def formatResult(name: String, n: Int, f: Int => Int) = {
+    def formatResult(name: String, n: Int, f: Int => Int): String = {
         val msg = "The %s of %d is %d."
         msg.format(name, n, f(n))
     }
