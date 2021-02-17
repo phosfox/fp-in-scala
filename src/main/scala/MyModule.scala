@@ -1,8 +1,8 @@
-import datastructures.List.sum
-import datastructures._
+import datastructures.{Branch, Leaf, Tree}
 
 object MyModule {
   def main(args: Array[String]): Unit = {
-    println(List.init(List(1,2,3,4)))
+    println(Tree.depthViaFold(Branch(Branch(Leaf(1), Leaf(2)), Branch(Leaf(3), Leaf(4)))))
+
   }
 }
